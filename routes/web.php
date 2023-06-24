@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArtistaController;
+use App\Http\Controllers\PublicoController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [AuthController::class, 'verLogin']);
+Route::get('/admin',[AdminController::class, 'adminHome']);
+Route::get('/artista',[ArtistaController::class, 'artistaHome']);
+Route::get('/publico',[PublicoController::class, 'publicoHome']);
+
+Route::get('/admin/perfiles', [AdminController::class, 'perfiles'])->name('admin.perfiles');
+Route::get('/admin/cuentas', [AdminController::class, 'cuentas'])->name('admin.cuentas');
+//Route::get('/admin/cuentas/{id}/edit', [AdminController::class, 'editCuenta'])->name('admin.cuentas.edit');

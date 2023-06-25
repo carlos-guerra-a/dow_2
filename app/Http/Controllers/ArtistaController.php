@@ -26,8 +26,10 @@ class ArtistaController extends Controller
         return view('artista.publicar', compact('user'));
     }
 
-    public function baneadas(){
-        return view('artista.baneadas');
+    public function baneadas($user){
+        $cuenta = Cuenta::where('user', $user)->first();
+        $imagenes = $cuenta->imagenes;
+        return view('artista.baneadas',compact('user','imagenes'));
     }
 
     public function mensaje($user){

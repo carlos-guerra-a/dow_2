@@ -28,7 +28,7 @@
       @foreach ($cuentas as $cuenta)
         @if ($cuenta->perfil_id !== 1)
             <li>
-                <form method="POST" action="{{ route('artista.home', $cuenta->id) }}">
+                <form method="POST" action="{{ route('artista.home', $cuenta->user) }}">
                     @csrf
                     <button type="submit" class="btn btn-link">{{ $cuenta->nombre }} {{ $cuenta->apellido }}</button>
                 </form>

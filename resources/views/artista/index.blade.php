@@ -10,7 +10,7 @@
                 <h5 class="card-title">Mis Fotos</h5>
                 <a href="{{ route('artista.publicar', ['user' => $cuenta->user]) }}" class="btn btn-primary mb-3">Añadir Nueva Foto</a>
 
-                <a href="{{ route('artista.baneadas') }}" class="btn btn-primary mb-3">Ver Fotos Baneadas</a>
+                <a href="{{ route('artista.baneadas', ['user' => $cuenta->user]) }}" class="btn btn-primary mb-3">Ver Fotos Baneadas</a>
                 <div class="row">
                     @foreach ($imagenes as $imagen)
                         <div class="col-md-4">

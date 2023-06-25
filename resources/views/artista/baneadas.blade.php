@@ -10,18 +10,21 @@
             <div class="card-body">
                 <h5 class="card-title">Mis Fotos Baneadas</h5>
                 <div class="row">
-                    {{-- @foreach ($fotosBaneadas as $foto)
-                        <div class="col-md-4">
-                            <div class="card mb-4">
-                                <img class="card-img-top" src="{{ $foto->url }}" alt="Imagen Baneada">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $foto->titulo }}</h5>
-                                    <p class="card-text">Motivo de Baneo: {{ $foto->motivo_ban }}</p>
-                                    <button class="btn btn-primary">Desbanear</button>
+                    <div class="row">
+                        @foreach ($imagenes as $imagen)
+                            @if ($imagen->baneada == 1)
+                                <div class="col-md-4">
+                                    <div class="card mb-4">
+                                        <img class="card-img-top" src="{{ asset('storage/'.$imagen->archivo) }}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $imagen->titulo }}</h5>
+                                            <p>Motivo de baneo: {{ $imagen->motivo_ban }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach --}}
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

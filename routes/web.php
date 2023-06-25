@@ -14,7 +14,7 @@ Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.home');
 Route::get('/artista/{user}', [ArtistaController::class, 'artistaHome'])->name('artista.home');
 
 Route::get('/artista/{user}/publicar', [ArtistaController::class, 'publicar'])->name('artista.publicar');
-Route::get('/artista/baneadas', [ArtistaController::class, 'baneadas'])->name('artista.baneadas');
+Route::get('/artista/{user}/baneadas', [ArtistaController::class, 'baneadas'])->name('artista.baneadas');
 Route::get('/', [HomeController::class, 'indexHome'])->name('index');
 Route::get('/crear', [HomeController::class, 'crearCuenta'])->name('crear.cuenta');
 ;

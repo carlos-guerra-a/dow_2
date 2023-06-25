@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticable;
 
-class Cuenta extends Model
+class Cuenta extends Authenticable
 {
     use HasFactory;
     use SoftDeletes;
@@ -26,6 +27,11 @@ class Cuenta extends Model
     public function imagenes():HasMany {
         return $this->hasMany(Imagen::class, 'cuenta_user', 'user');
     }
+
+
+
+
+
 }
 
 

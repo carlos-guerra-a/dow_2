@@ -4,7 +4,8 @@
     <div class="container">
         <h1>Cargar y publicar imagen</h1>
 
-        <form enctype="multipart/form-data">
+        <form enctype="multipart/form-data" method="POST" action="{{ route('artista.subir', ['user' => $user]) }}">
+            @csrf
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" name="titulo">

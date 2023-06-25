@@ -1,19 +1,15 @@
 @extends('templates.master')
 
-@section('title', 'Inicio')
+@section('title', 'Home - Artista')
 
 @section('contenido')
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">
-                Galería de Fotos
-                <form class="form-inline my-2 my-lg-0 float-right">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por artista" aria-label="Buscar">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
-            </div>
+            <div class="card-header">Panel del Artista</div>
             <div class="card-body">
+                <h5 class="card-title">Mis Fotos</h5>
+                <a href="{{ route('artista.publicar') }}" class="btn btn-primary mb-3">Añadir Nueva Foto</a>
                 <div class="row">
                     {{-- <!-- Aquí se insertarían las fotos con un bucle @foreach -->
                     <!--
@@ -23,7 +19,8 @@
                                 <img class="card-img-top" src="{{ $photo->url }}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $photo->title }}</h5>
-                                    <p class="card-text">Artista: {{ $photo->artist }}</p>
+                                    <button class="btn btn-primary">Editar</button>
+                                    <button class="btn btn-danger">Eliminar</button>
                                 </div>
                             </div>
                         </div>

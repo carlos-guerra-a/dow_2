@@ -6,7 +6,5 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function verLogin() {
-        return view('autenticacion.login');
-    }
+   
 }

@@ -37,3 +37,4 @@ Route::post('/login',[CuentasController::class,'autenticar'])->name('usuarios.au
 //crear cuenta
 Route::post('/crear', [CuentasController::class, 'crearCuenta'])->name('crear.cuenta');
 
+Route::delete('/admin/cuentas/{user}', [AdminController::class, 'borrarCuenta'])->name('admin.borrar');

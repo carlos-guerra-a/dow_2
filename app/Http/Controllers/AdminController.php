@@ -10,17 +10,17 @@ class AdminController extends Controller
     public function adminHome(){
         $perfiles = Perfil::all();
         $cuentas = Cuenta::all();
-
-        return view('admin.index',compact('perfiles','cuentas'));
+        $perfilActual = Perfil::findOrFail(auth()->user()->perfil_id);
+        return view('admin.index',compact('perfiles','cuentas','perfilActual'));
     }
 
     
-    public function deleteCuenta($id)
+    public function borrarCuenta($user)
     {
-        $cuenta = Cuenta::findOrFail($id);
+        $cuenta = Cuenta::findOrFail($user);
         $cuenta->delete();
 
-        // Opcionalmente, puedes redirigir a una página o realizar otras acciones después de la eliminación
+        return redirect()->route('admin.home');
     }
 
 

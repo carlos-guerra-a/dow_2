@@ -2,9 +2,11 @@
 
 @section('contenido')
     <div class="container">
-        <h1>Crear cuenta de artista</h1>
+        <h1>Crear cuenta de Artista</h1>
 
-        <form>
+        <form method="POST" action="{{ route('crear.cuenta') }}">
+            @csrf
+
             <div class="mb-3">
                 <label for="user" class="form-label">Usuario</label>
                 <input type="text" class="form-control" id="user" name="user">

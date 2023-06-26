@@ -18,26 +18,29 @@
 </head>
 <body>
 
-<div class="container">
-  <h2>Galería de Artistas</h2>
-  <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Artistas
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <input class="form-control" id="myInput" type="text" placeholder="Search..">
-      @foreach ($cuentas as $cuenta)
-        @if ($cuenta->perfil_id !== 1)
-            <li>
-                <form method="POST" action="{{ route('artista.home', $cuenta->user) }}">
-                    @csrf
-                    <button type="submit" class="btn btn-link">{{ $cuenta->nombre }} {{ $cuenta->apellido }}</button>
-                </form>
-            </li>
-        @endif
-      @endforeach
-    </ul>
+  <div class="container">
+    <h2>Galería de Artistas</h2>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Artistas
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            @foreach ($cuentas as $cuenta)
+                @if ($cuenta->perfil_id !== 1)
+                    <li>
+                        <a href="{{ route('artista.home', $cuenta->user) }}" class="btn btn-link">{{ $cuenta->nombre }} {{ $cuenta->apellido }}</a>
+                    </li>
+                @endif
+            @endforeach
+        </ul>
+    </div>
+
+    <div>
+      <a href="{{ route('login') }}" class="btn btn-primary ">Iniciar Sesión</a>
+      <a href="{{ route('crear.cuenta') }}" class="btn btn-primary">Crear cuenta de artista</a>
+    </div>
   </div>
-</div>
+
 
 <script>
 $(document).ready(function(){

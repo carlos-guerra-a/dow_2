@@ -24,7 +24,7 @@ Route::get('/crear', [HomeController::class, 'crearCuenta'])->name('crear.cuenta
 
 Route::get('/admin/perfiles', [AdminController::class, 'perfiles'])->name('admin.perfiles');
 Route::get('/admin/cuentas', [AdminController::class, 'cuentas'])->name('admin.cuentas');
-//Route::get('/admin/cuentas/{id}/edit', [AdminController::class, 'editCuenta'])->name('admin.cuentas.edit');
+Route::get('/admin/cuentas/{id}/edit', [AdminController::class, 'editCuenta'])->name('admin.cuentas.edit');
 
 
 //publicar foto
@@ -36,3 +36,4 @@ Route::post('/login',[CuentasController::class,'autenticar'])->name('usuarios.au
 
 //crear cuenta
 Route::post('/crear', [CuentasController::class, 'crearCuenta'])->name('crear.cuenta');
+

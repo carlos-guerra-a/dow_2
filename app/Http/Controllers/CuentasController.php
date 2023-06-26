@@ -64,11 +64,9 @@ class CuentasController extends Controller
         $cuenta->apellido = $apellido;
         $cuenta->perfil_id = 2; // ID del perfil de artista
         $cuenta->save();
+           
     
-        // Iniciar sesión con la nueva cuenta
-        Auth::login($cuenta);
-    
-        return redirect()->route('artista.home', ['user' => $user]);
+        return redirect()->route('index');
     }
         
 

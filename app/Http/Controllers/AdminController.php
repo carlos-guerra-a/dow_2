@@ -23,5 +23,22 @@ class AdminController extends Controller
         return redirect()->route('admin.home');
     }
 
+    public function actualizar(Request $request, $user)
+    {
+        $cuenta = Cuenta::where('user', $user)->firstOrFail();
+        $cuenta->nombre = $request->input('nombre');
+        $cuenta->apellido = $request->input('apellido');
+        $cuenta->save();
+
+        return redirect()->route('admin.home');
+    }
+
+    public function editar($user)
+    {
+        $cuenta = Cuenta::where('user', $user)->first();
+
+        return view('admin.editar', compact('cuenta'));
+    }
+
 
 }

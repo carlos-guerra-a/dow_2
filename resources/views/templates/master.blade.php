@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <!-- Required meta tags -->
+ 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 
     <title>@yield('title')</title>
 </head>

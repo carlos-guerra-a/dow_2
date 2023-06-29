@@ -16,28 +16,30 @@
                             <div class="card mb-4">
                                 <img class="card-img-top" src="{{ asset('storage/'.$imagen->archivo) }}" alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $imagen->titulo }}</h5>
+                                    <h5 class="card-title">
+                                        @if ($imagen->baneada && Auth::user()->perfil_id === 1)
+                                            {{ $imagen->titulo }} (Baneada)
+                                        @elseif ($imagen->baneada && Auth::user()->perfil_id === 2)
+                                            {{ $imagen->titulo }} <i class="material-icons" style="color:red" >error_outline</i>
+                                        @else
+                                            {{ $imagen->titulo }}
+                                        @endif
+                                    </h5>
                                     
-                                    @if ($imagen->baneada)
-                                        <!-- Mostrar mensaje de "Baneada" -->
-                                        <p class="text-danger">Baneada</p>
-                                    @elseif (Auth::user()->perfil_id === 2)
+                                    @if (Auth::user()->perfil_id === 2)
                                         <!-- Botones de edición y eliminación -->
-                                        <button class="btn btn-primary">Editar</button>
+                                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEditar{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseEditar{{ $imagen->id }}">Editar</button>
                                         <button class="btn btn-danger">Eliminar</button>
-                                    @elseif (Auth::user()->perfil_id === 1)
-                                        <!-- Botón Banear -->
-                                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseExample{{ $imagen->id }}">Banear</button>
 
-                                        <!-- Formulario para el motivo de ban -->
-                                        <div class="collapse" id="collapseExample{{ $imagen->id }}">
+                                        <!-- Collapse de edición -->
+                                        <div class="collapse" id="collapseEditar{{ $imagen->id }}">
                                             <div class="card card-body">
-                                                <form action="{{ route('artista.banear', ['id' => $imagen->id]) }}" method="POST">
+                                                <form action="{{ route('artista.editar', ['id' => $imagen->id]) }}" method="POST">
                                                     @csrf
                                                     <div class="mb-3">
-                                                        <input type="text" class="form-control" name="motivo" placeholder="Motivo de ban" aria-label="Motivo de ban">
+                                                        <input type="text" class="form-control" name="nuevo_nombre" placeholder="Escribir nuevo nombre" aria-label="Escribir nuevo nombre">
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                                    <button type="submit" class="btn btn-primary">Cambiar</button>
                                                 </form>
                                             </div>
                                         </div>

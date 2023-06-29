@@ -10,6 +10,9 @@ use App\Http\Controllers\CuentasController;
 
 
 Route::get('/login', [HomeController::class, 'verLogin'])->name('login');
+
+
+
 Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.home');
 Route::get('/artista/{user}', [ArtistaController::class, 'artistaHome'])->name('artista.home');
 Route::get('/artista/{user}', [ArtistaController::class, 'artistaHome'])->name('artista.home');
@@ -37,4 +40,7 @@ Route::put('/admin/cuentas/{user}', [AdminController::class, 'actualizar'])->nam
 
 //baneo y comentario
 Route::post('/artista/banear/{id}', [AdminController::class, 'banear'])->name('artista.banear');
-
+//borrar foto
+Route::delete('/artista/eliminar/{id}', [ArtistaController::class, 'eliminar'])->name('artista.eliminar');
+//editar nombre foto
+Route::post('/artista/editar/{id}', [ArtistaController::class, 'editar'])->name('artista.editar');

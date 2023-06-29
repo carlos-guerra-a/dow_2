@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Cuenta;
 use App\Models\Perfil;
 use App\Models\Imagen;
+use Illuminate\Support\Facades\Storage;
+
+
 
 use Illuminate\Http\Request;
 
@@ -57,6 +60,29 @@ class ArtistaController extends Controller
         return redirect()->route('artista.imagencargada', ['user' => $user]);
     }
     
+    public function eliminar($id)
+    {
+        $imagen = Imagen::findOrFail($id);
+
+        // Eliminar el archivo físico de la imagen
+        Storage::delete($imagen->archivo);
+
+        // Eliminar la imagen de la base de datos
+        $imagen->delete();
+
+        return redirect()->back()->with('success', 'La imagen ha sido eliminada correctamente.');
+    }
+
+
+    public function editar(Request $request, $id)
+        {
+            $imagen = Imagen::findOrFail($id);
+            $imagen->titulo = $request->input('nuevo_nombre');
+            $imagen->save();
+
+            return redirect()->back()->with('success', 'El nombre de la imagen ha sido cambiado correctamente.');
+        }
+
 
 
 }

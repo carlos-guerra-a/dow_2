@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Perfil;
 use App\Models\Cuenta;
+use App\Models\Imagen;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -39,6 +40,18 @@ class AdminController extends Controller
 
         return view('admin.editar', compact('cuenta'));
     }
+
+    public function banear(Request $request, $id)
+{
+        $imagen = Imagen::findOrFail($id);
+        $imagen->Baneada = 1;
+        $imagen->motivo_ban = $request->input('motivo');
+        $imagen->save();
+
+    return redirect()->back()->with('success', 'La imagen ha sido banada correctamente.');
+}
+
+
 
 
 }

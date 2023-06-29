@@ -34,3 +34,7 @@ Route::delete('/admin/cuentas/{user}', [AdminController::class, 'borrarCuenta'])
 //actualizar cuenta
 Route::get('/admin/editar/{user}', [AdminController::class, 'editar'])->name('admin.editar');
 Route::put('/admin/cuentas/{user}', [AdminController::class, 'actualizar'])->name('admin.actualizar');
+
+//baneo y comentario
+Route::post('/artista/banear/{id}', [AdminController::class, 'banear'])->name('artista.banear');
+

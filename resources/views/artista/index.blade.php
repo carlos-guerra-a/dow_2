@@ -14,13 +14,14 @@
                     @foreach ($imagenes as $imagen)
                         <div class="col-md-4">
                             <div class="card mb-4">
-                                <img class="card-img-top" src="{{ asset('storage/'.$imagen->archivo) }}" alt="Card image cap">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#imagenModal{{ $imagen->id }}">
+                                    <img class="card-img-top" src="{{ asset('storage/'.$imagen->archivo) }}" alt="Card image cap">
+                                </a>
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        @if ($imagen->baneada && Auth::user()->perfil_id === 1)
-                                            {{ $imagen->titulo }} (Baneada)
-                                        @elseif ($imagen->baneada && Auth::user()->perfil_id === 2)
-                                            {{ $imagen->titulo }} <i class="material-icons" style="color:red" >error_outline</i>
+                                        @if ($imagen->baneada && Auth::user()->perfil_id === 2)
+                                            {{ $imagen->titulo }}
+                                            <i class="material-icons" style="color: red;">error_outline</i>
                                         @else
                                             {{ $imagen->titulo }}
                                         @endif
@@ -53,4 +54,21 @@
         </div>
     </div>
 </div>
+
+@foreach ($imagenes as $imagen)
+    <div class="modal fade" id="imagenModal{{ $imagen->id }}" tabindex="-1" aria-labelledby="imagenModal{{ $imagen->id }}Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imagenModal{{ $imagen->id }}Label">{{ $imagen->titulo }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('storage/'.$imagen->archivo) }}" class="img-fluid" alt="{{ $imagen->titulo }}">
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 @endsection

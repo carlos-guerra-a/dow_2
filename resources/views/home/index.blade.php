@@ -1,82 +1,46 @@
 @extends('templates.master')
 
 @section('contenido')
+
+{{-- CSS --}}
 <style>
-  * {
-	margin: 0; 
-	padding: 0;
-}
+
+@import url(https://fonts.googleapis.com/css?family=Reenie+Beanie);
 body {
-	background: #ccc; 
-	font-family: arial, verdana, tahoma;
+ background:url('https://i.imgur.com/ue8n1S3.png');
+  color:#22f;
+}
+figure {
+  border:solid 5px #fff;
+  box-shadow:0px 0px 10px #000;
+  display:inline-block;
+  background:#fff;
+  border-radius:2px;
+  transform:rotate(-10deg);
+  transition:transform .8s;
+}
+figcaption {
+  text-align:center;
+  font-size:20px;
 }
 
-.artist {
-  margin: 20px auto;
-
+figure:nth-child(2) {
+  transform:rotate(23deg);
+  transition:transform .2s;
 }
 
-.accordian {
-	width: 805px; height: 320px;
-	overflow: hidden;
-	
-	/* Tiempo para algunos estilos */
-	margin: 50px auto;
-	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
-	-webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
-	-moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+figure:nth-child(3) {
+  transform:rotate(-2deg);
+  transition:transform .2s;
 }
 
-/* Un pequeño truco para evitar parpadeos en algunos navegadores */
-.accordian ul {
-	width: 2000px;
-	/* Esto dará suficiente espacio al último elemento para moverse
-	en lugar de caerse/parpadear durante los hover */
+figure:hover {
+  transform:rotate(0deg);
+  transition:transform .2s;
 }
-
-.accordian li {
-	position: relative;
-	display: block;
-	width: 160px;
-	float: left;
-	
-	border-left: 1px solid #888;
-	
-	box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
-	
-	/* Transiciones para dar efecto de animación */
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	/* Si te desplazas sobre las imágenes ahora, deberías poder ver el acordeón básico */
-}
-
-/* Reduce el ancho de los elementos sin hover */
-.accordian ul:hover li {width: 40px;}
-/* Aplica efectos de hover ahora */
-/* Los estilos de hover de LI deben anular los estilos de hover de UL */
-.accordian ul li:hover {width: 640px;}
-
-
-.accordian li img {
-	display: block;
-}
-
-.gallery {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .gallery img {
-      width: 805px; /* Establece el ancho deseado */
-      height: 320px; /* Establece la altura deseada */
-      object-fit: cover; /* Ajusta la imagen para llenar el espacio sin deformarla */
-      margin: 5px; /* Agrega un margen entre las imágenes */
-    }
 </style>
 
+{{-- Buscador de Artistas --}}
 <div class="dropdown artist">
   <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">Buscar Artistas</button>
   <ul class="dropdown-menu">
@@ -91,45 +55,64 @@ body {
   </ul>
 </div>
 
-<div class="accordian gallery">
-	<ul>
-		<li>
-      <img src="{{asset('images/imagen_01.jpg')}}">
-		</li>
-		<li>
-      <img src="{{asset('images/imagen_02.jpg')}}">
-		</li>
-		<li>			
-			<img src="{{asset('images/imagen_03.jpg')}}">	
-		</li>
-		<li>
-			<img src="{{asset('images/imagen_04.jpg')}}">
-		</li>
-		<li>
-			<img src="{{asset('images/imagen_05.jpg')}}">
-		</li>
-	</ul>
-</div>
 
-<div class="accordian gallery">
-	<ul>
-		<li>
-      <img src="{{asset('images/imagen_06.jpg')}}">
-		</li>
-		<li>
-      <img src="{{asset('images/imagen_07.jpg')}}">
-		</li>
-		<li>			
-			<img src="{{asset('images/imagen_08.jpg')}}">	
-		</li>
-		<li>
-			<img src="{{asset('images/imagen_09.jpg')}}">
-		</li>
-    <li>
-			<img src="{{asset('images/imagen_10.png')}}">
-		</li>
-	</ul>
-</div>
+{{-- Galería Artista Ejemplo --}}
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_01.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>El hombre que araña</figcaption>
+  <figcaption class="blockquote-footer">Picasso</figcaption>
+</figure>
+
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_02.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>No-Name</figcaption>
+  <figcaption class="blockquote-footer">Artista</figcaption>
+</figure>
+
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_03.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>No-Name</figcaption>
+  <figcaption class="blockquote-footer">Artista</figcaption>
+</figure>
+
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_04.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>No-Name</figcaption>
+  <figcaption class="blockquote-footer">Artista</figcaption>
+</figure>
+
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_05.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>No-Name</figcaption>
+  <figcaption class="blockquote-footer">Artista</figcaption>
+</figure>
+
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_06.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>No-Name</figcaption>
+  <figcaption class="blockquote-footer">Artista</figcaption>
+</figure>
+
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_07.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>No-Name</figcaption>
+  <figcaption class="blockquote-footer">Artista</figcaption>
+</figure>
+
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_08.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>No-Name</figcaption>
+  <figcaption class="blockquote-footer">Artista</figcaption>
+</figure>
+
+<figure style="max-width: 250px;">
+  <img src="{{asset('images/imagen_09.jpg')}}" style="max-width: 100%; height: auto;" />
+  <figcaption>No-Name</figcaption>
+  <figcaption class="blockquote-footer">Artista</figcaption>
+</figure>
+
+
+
 
 @endsection
 

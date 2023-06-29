@@ -36,7 +36,7 @@
 
 
     {{-- Navbar --}}  
-    <nav class="navbar bg-body-tertiary" style="background-color: #f1e7b0;">
+    <nav class="navbar bg-body-tertiary" style="background-color: #ffba1f;">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('index') }}">
                 <img src="{{asset('images/logo.ico')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">

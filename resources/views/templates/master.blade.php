@@ -11,12 +11,13 @@
 </head>
 <body>
 
-    {{-- Barra de usuario --}}
+   {{-- Barra de usuario --}}
     <div class="container-fluid">
         <div class="row bg-dark text-white">
             <div class="col-8">
-                Bienvenido {{Auth::user()->nombre}} Nombre_usuario Apellido_usuario
-                {{-- Bienvenido <span class="fw-bold">{{Auth::cuenta()->nombre}} </span>[{{Auth::perfil()->nombre}}] --}}
+                @if (Auth::check())
+                    Bienvenido {{ Auth::user()->nombre }} {{ Auth::user()->apellido }}
+                @endif
             </div>
             <div class="col-2 text-end d-none d-lg-block">
                 {{-- Último inicio de sesión: 01/04/2023 a las 18:34
@@ -24,24 +25,30 @@
             </div>
             <div class="col-2 text-end d-none d-lg-block">
                 {{-- href="{{route('perfiles.logout')}}" --}}
-                <a href="#" class="text-white">Cerrar Sesión</a>
+                @if (Auth::check())
+                    <a href="#" class="text-white">Cerrar Sesión</a>
+                @endif
             </div>
         </div>
     </div>
 
+
     {{-- Navbar --}}  
-        <nav class="navbar bg-body-tertiary" style="background-color: #f1e7b0;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('index') }}">
-                    <img src="{{asset('images/logo.ico')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                    PhotoArt
-                </a>
-                <div>
+    <nav class="navbar bg-body-tertiary" style="background-color: #f1e7b0;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('index') }}">
+                <img src="{{asset('images/logo.ico')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                PhotoArt
+            </a>
+            <div>
+                @if (!Auth::check())
                     <a href="{{ route('login') }}" class="btn btn-primary me-2">Iniciar Sesión</a>
                     <a href="{{ route('crear.cuenta') }}" class="btn btn-success">Crear cuenta de artista</a>
-                </div>
+                @endif
             </div>
-        </nav>
+        </div>
+    </nav>
+
         
     
     {{-- Contenido principal --}}

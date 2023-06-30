@@ -5,7 +5,7 @@
         <h1>Crear cuenta de Artista</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
-                <p>Por favor solucione los siguientes problemas:</p>
+                <p>Atención:</p>
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>

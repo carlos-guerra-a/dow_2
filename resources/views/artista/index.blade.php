@@ -3,14 +3,18 @@
 @section('contenido')
 <div class="row justify-content-center">
     <div class="col-12">
-        <div class="card">
-            <div class="card-header">Panel de: {{ $cuenta->nombre }} {{ $cuenta->apellido }}</div>
+        <div class="card d-flex flex-fluid">
+            <div class="card-header d-flex flex-fluid"><h5>Galería de: {{ $cuenta->nombre }} {{ $cuenta->apellido }}</h5></div>
 
             <div class="card-body ">
-                <h5 class="card-title">Mis Fotos</h5>
+                
+                @if (Auth::user()->perfil_id === 2)
                 <a href="{{ route('artista.publicar', ['user' => $cuenta->user]) }}" class="btn btn-primary mb-3">Añadir Nueva Foto</a>
-                <a href="{{ route('artista.baneadas', ['user' => $cuenta->user]) }}" class="btn btn-primary mb-3">Ver Fotos Baneadas</a>
-                <a href="{{ route('admin.home') }}" class="btn btn-primary mb-3">Listar artistas</a>
+                <a href="{{ route('artista.baneadas', ['user' => $cuenta->user]) }}" class="btn btn-primary mb-3">Ver mis imágenes baneadas</a>
+            @endif
+            @if (Auth::user()->perfil_id === 1)
+                <a href="{{ route('admin.home') }}" class="btn btn-primary mb-3">Ver otros artistas</a>
+            @endif
                 <div class="row row-cols-2">
                     <div class="row">
                         <div class="row">
@@ -32,22 +36,46 @@
                                                         <button type="submit" class="btn btn-secondary btn-block">Desbanear Imagen</button>
                                                     </form>
                                                 @else
-                                                   <!-- Botón Banear -->
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBanear{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseBanear{{ $imagen->id }}">Banear</button>
 
-                                                    <!-- Formulario para el motivo de ban -->
-                                                    <div class="collapse" id="collapseBanear{{ $imagen->id }}">
-                                                        <div class="card card-body  d-flex flex-column">
-                                                            <form action="{{ route('artista.banear', ['id' => $imagen->id]) }}" method="POST">
-                                                                @csrf
-                                                                <div class="mb-3">
-                                                                    <input type="text" class="form-control" name="motivo" placeholder="Motivo de ban" aria-label="Motivo de ban">
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="banearModal{{$imagen->id}}" tabindex="-1" aria-labelledby="banearModalLabel{{$imagen->id}}" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="banearModalLabel{{$imagen->id}}">Confirmar</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
-                                                                <button type="submit" class="btn btn-primary">Enviar</button>
-                                                            </form>
+                                                            <form action="{{ route('artista.banear', ['id' => $imagen->id]) }}" method="POST">
+                                                                    @csrf
+                                                                    <div class="modal-body">
+                                                                        ¿Desea banear imagen <span class="text-danger fw-bold">{{$imagen->titulo}} </span>?
+
+                                                                        
+                                                                            <input type="text" class="form-control" name="motivo" placeholder="Motivo de ban" aria-label="Motivo de ban">
+                                                                      
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-danger">Banear</button>
+                                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                                                                        
+                                                                    </div>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    {{-- este va --}}
+                                                   
+                                                    
+
+
+                                                   <!-- Botón Banear -->
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#banearModal{{$imagen->id}}">Banear</button>
+
+                                                  
                                                 @endif
+
+
                                             @elseif (Auth::user()->perfil_id === 2)
                                                 <!-- Título de la imagen para el artista -->
                                                 <h5 class="card-title">
@@ -60,11 +88,50 @@
                                                 <!-- Botones de edición y eliminación -->
                                                 <div class="btn-group">
                                                     <button class="btn btn-primary btn-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEditar{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseEditar{{ $imagen->id }}">Editar</button>
-                                                    <form action="{{ route('artista.eliminar', ['id' => $imagen->id]) }}" method="POST">
+                                                    
+                                                    
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="borrarModal{{$imagen->id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$imagen->id}}" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="borrarModalLabel{{$imagen->id}}">Confirmar</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <form action="{{ route('artista.eliminar', ['id' => $imagen->id]) }}" method="POST">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <div class="modal-body">
+                                                                        ¿Desea eliminar Imagen <span class="text-danger fw-bold">{{$imagen->titulo}} </span>?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-danger">Borrar Imagen</button>
+                                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                                                                        
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    {{-- este va --}}
+                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">
+                                                        <div class="mb-3">
+                                                            <input type="text" class="form-control" name="motivo" placeholder="Motivo de ban" aria-label="Motivo de ban">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                                    </button>    
+                                                        
+                                                                                                       
+                                                    {{-- Original --}}
+                                                    {{-- <form action="{{ route('artista.eliminar', ['id' => $imagen->id]) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-block">Eliminar</button>
-                                                    </form>
+                                                    </form> --}}
+
+
+
                                                 </div>
                                                 <!-- Collapse de edición -->
                                                 <div class="collapse" id="collapseEditar{{ $imagen->id }}">

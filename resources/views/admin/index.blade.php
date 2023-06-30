@@ -44,13 +44,42 @@
                                                         <i class="material-icons">edit</i>
                                                     </a>
                                                     @if ($cuenta->user !== Auth::user()->user)
-                                                        <form action="{{ route('admin.borrar', ['user' => $cuenta->user]) }}" method="POST">
+
+                                                    <!-- Modal -->
+                                                        <div class="modal fade" id="borrarModal{{$cuenta->user}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$cuenta->user}}" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h1 class="modal-title fs-5" id="borrarModalLabel{{$cuenta->user}}">Confirmar</h1>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <form action="{{ route('admin.borrar', ['user' => $cuenta->user]) }}" method="POST">
+                                                                        @method('DELETE')
+                                                                        @csrf
+                                                                        <div class="modal-body">
+                                                                            ¿Desea eliminar cuenta de <span class="text-danger fw-bold">{{$cuenta->nombre}} {{$cuenta->apellido}} </span>?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-danger">Borrar Artista</button>
+                                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                                                                            
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {{-- este va --}}
+                                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$cuenta->user}}">
+                                                            <span class="material-icons">delete</span>
+                                                        </button>
+                                                        {{-- original --}}
+                                                        {{-- <form action="{{ route('admin.borrar', ['user' => $cuenta->user]) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">
+                                                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$jugador->rut}}>
                                                                 <i class="material-icons">delete</i>
                                                             </button>
-                                                        </form>
+                                                        </form> --}}
                                                     @endif
                                                 </div>
                                             @endif

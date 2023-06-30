@@ -28,7 +28,7 @@
                                 <tr>
                                     <td>
                                         @if ($cuenta->perfil_id === 1 && $cuenta->user === Auth::user()->user)
-                                            {{ $cuenta->nombre }} {{ $cuenta->apellido }}
+                                            <span class="text-dark">{{ $cuenta->nombre }} {{ $cuenta->apellido }}</span>
                                         @else
                                             <a href="{{ route('artista.home', ['user' => $cuenta->user]) }}">{{ $cuenta->nombre }} {{ $cuenta->apellido }}</a>
                                         @endif

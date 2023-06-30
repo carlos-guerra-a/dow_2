@@ -44,14 +44,23 @@ class AdminController extends Controller
     public function banear(Request $request, $id)
 {
         $imagen = Imagen::findOrFail($id);
-        $imagen->Baneada = 1;
-        $imagen->motivo_ban = $request->input('motivo');
+
+        if ($imagen->baneada) {
+            $imagen->baneada = 0;
+            $imagen->motivo_ban = "";
+        } else {
+            $imagen->baneada = 1;
+            $imagen->motivo_ban = $request->input('motivo');
+        }
+
         $imagen->save();
 
-    return redirect()->back()->with('success', 'La imagen ha sido banada correctamente.');
+    return redirect()->back();
+}
+
 }
 
 
 
 
-}
+

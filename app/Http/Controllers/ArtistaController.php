@@ -66,7 +66,8 @@ class ArtistaController extends Controller
         $imagen = Imagen::findOrFail($id);
 
         // Eliminar el archivo físico de la imagen
-        Storage::delete($imagen->archivo);
+        Storage::disk('public')->delete($imagen->archivo);
+
 
         // Eliminar la imagen de la base de datos
         $imagen->delete();

@@ -12,7 +12,7 @@
 
                     @if ($errors->any())
                     <div class="alert alert-danger">
-                        <p>Por favor solucione los siguientes problemas:</p>
+                        <p>Problemas detectados: </p>
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

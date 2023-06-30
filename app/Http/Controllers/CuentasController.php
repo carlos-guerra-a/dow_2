@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Gate;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CuentaRequest; 
 
 class CuentasController extends Controller
 {
@@ -40,7 +40,7 @@ class CuentasController extends Controller
         }
     
 
-    public function crearCuenta(Request $request)
+    public function crearCuenta(CuentaRequest $request)
     {
         $user = $request->input('user');
         $password = $request->input('password');

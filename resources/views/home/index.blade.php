@@ -104,7 +104,7 @@ figure:hover {
 </div>
 
 {{-- Galería de Fotos --}}
-<div>
+<div class="artist-cards">
     @foreach ($imagenes as $imagen)
         <figure style="max-width: 250px;" class="artist-card" data-artista="{{ $imagen->cuenta->user }}">
             <img src="{{ asset('storage/'.$imagen->archivo) }}" alt="Imagen" style="max-width: 100%; height: auto;">

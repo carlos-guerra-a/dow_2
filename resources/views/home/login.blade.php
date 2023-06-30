@@ -3,12 +3,24 @@
 @section('title', 'Iniciar Sesión')
 
 @section('contenido')
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center ">
+        <div class="col-md-8  " >
             <div class="card">
                 <div class="card-header">Iniciar Sesión</div>
     
                 <div class="card-body">
+
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <p>Por favor solucione los siguientes problemas:</p>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
                     <form method="POST" action="{{ route('usuarios.autenticar') }}">
                         @csrf
     

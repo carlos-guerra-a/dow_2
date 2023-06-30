@@ -15,7 +15,7 @@ Route::get('/login', [HomeController::class, 'verLogin'])->name('login');
 
 Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.home');
 Route::get('/artista/{user}', [ArtistaController::class, 'artistaHome'])->name('artista.home');
-Route::get('/artista/{user}', [ArtistaController::class, 'artistaHome'])->name('artista.home');
+//Route::get('/artista/{user}', [ArtistaController::class, 'artistaHome'])->name('artista.home');
 
 Route::get('/artista/{user}/publicar', [ArtistaController::class, 'publicar'])->name('artista.publicar');
 Route::get('/artista/{user}/baneadas', [ArtistaController::class, 'baneadas'])->name('artista.baneadas');
@@ -44,3 +44,7 @@ Route::post('/artista/banear/{id}', [AdminController::class, 'banear'])->name('a
 Route::delete('/artista/eliminar/{id}', [ArtistaController::class, 'eliminar'])->name('artista.eliminar');
 //editar nombre foto
 Route::post('/artista/editar/{id}', [ArtistaController::class, 'editar'])->name('artista.editar');
+//logout
+Route::get('/cuenta/logout',[CuentasController::class,'logout'])->name('cuentas.logout');
+//listado artistas
+Route::get('/artista/listado', [ArtistaController::class, 'listado'])->name('artista.listado');

@@ -43,8 +43,9 @@ class ArtistaController extends Controller
     {
         $imagen = $request->file('archivo');
         $titulo = $request->input('titulo');
+        $timestamp = time();
     
-        $nombre = $user . '_' . $titulo . '.' . $imagen->getClientOriginalExtension();
+        $nombre = $user . '_' . $timestamp . '.' . $imagen->getClientOriginalExtension();
     
         $path = $imagen->storeAs('public', $nombre);
     
@@ -83,7 +84,7 @@ class ArtistaController extends Controller
             return redirect()->back()->with('success', 'El nombre de la imagen ha sido cambiado correctamente.');
         }
 
-
+  
 
 }
 

@@ -36,7 +36,7 @@ class CuentasController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('home.index');
+        return redirect()->route('index');
         }
     
 

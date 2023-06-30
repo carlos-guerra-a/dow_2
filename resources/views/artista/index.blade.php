@@ -10,6 +10,7 @@
                 <h5 class="card-title">Mis Fotos</h5>
                 <a href="{{ route('artista.publicar', ['user' => $cuenta->user]) }}" class="btn btn-primary mb-3">Añadir Nueva Foto</a>
                 <a href="{{ route('artista.baneadas', ['user' => $cuenta->user]) }}" class="btn btn-primary mb-3">Ver Fotos Baneadas</a>
+                <a href="{{ route('admin.home') }}" class="btn btn-primary mb-3">Listar artistas</a>
                 <div class="row">
                     @foreach ($imagenes as $imagen)
                         <div class="col-md-4">
@@ -19,7 +20,61 @@
                                 </a>
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        @if ($imagen->baneada && Auth::user()->perfil_id === 2)
+                                        @if (Auth::user()->perfil_id === 1)
+                                        @if ($imagen->baneada)
+                                        <button class="btn btn-secondary" disabled>Imagen Baneada</button>
+                                        @else
+                                            {{ $imagen->titulo }}
+                                        @endif
+                                    @elseif (Auth::user()->perfil_id === 2)
+                                        @if ($imagen->baneada)
+                                            {{ $imagen->titulo }} <i class="material-icons" style="color:red">error_outline</i>
+                                        @else
+                                            {{ $imagen->titulo }}
+                                        @endif
+                                    @endif
+                                </h5>
+                                
+                                @if (Auth::user()->perfil_id === 1 && !$imagen->baneada)
+                                    <!-- Botón Banear -->
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBanear{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseBanear{{ $imagen->id }}">Banear</button>
+
+                                    <!-- Formulario para el motivo de ban -->
+                                    <div class="collapse" id="collapseBanear{{ $imagen->id }}">
+                                        <div class="card card-body">
+                                            <form action="{{ route('artista.banear', ['id' => $imagen->id]) }}" method="POST">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" name="motivo" placeholder="Motivo de ban" aria-label="Motivo de ban">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @elseif (Auth::user()->perfil_id === 2)
+                                    <!-- Botones de edición y eliminación -->
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEditar{{ $imagen->id }}" aria-expanded="false" aria-controls="collapseEditar{{ $imagen->id }}">Editar</button>
+                                    <form action="{{ route('artista.eliminar', ['id' => $imagen->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+
+                                    <!-- Collapse de edición -->
+                                    <div class="collapse" id="collapseEditar{{ $imagen->id }}">
+                                        <div class="card card-body">
+                                            <form action="{{ route('artista.editar', ['id' => $imagen->id]) }}" method="POST">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" name="nuevo_nombre" placeholder="Escribir nuevo nombre" aria-label="Escribir nuevo nombre">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Cambiar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endif
+                                        
+                                        {{-- @if ($imagen->baneada && Auth::user()->perfil_id === 2)
                                             {{ $imagen->titulo }}
                                             <i class="material-icons" style="color: red;">error_outline</i>
                                         @else
@@ -44,7 +99,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>

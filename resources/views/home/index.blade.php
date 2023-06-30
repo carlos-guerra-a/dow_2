@@ -104,7 +104,7 @@ figure:hover {
 
 {{-- Combobox de Artistas --}}
 <div class="form-group">
-    <label for="artista-select">Seleccionar Artista:</label>
+    <label for="artista-select" style="color: black; font-weight: bold;" ><h4>Seleccionar Artista:</h4></label>
     <select class="form-control" id="artista-select">
         <option value="">Todos los Artistas</option>
         @foreach ($cuentas as $cuenta)

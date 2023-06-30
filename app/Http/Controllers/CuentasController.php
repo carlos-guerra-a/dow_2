@@ -27,7 +27,7 @@ class CuentasController extends Controller
     }
 
     return back()->withErrors([
-        'user' => 'Credenciales Incorrectas',
+        'user' => 'La cuenta o contraseña no es correcta, vuelva a ingresar sus datos.',
     ])->onlyInput('user');
     }
 
@@ -52,7 +52,7 @@ class CuentasController extends Controller
     
         if ($existeUsuario) {
             return back()->withErrors([
-                'user' => 'El usuario ya existe',
+                'user' => 'Nombre de usuario ya está en uso',
             ])->withInput();
         }
     

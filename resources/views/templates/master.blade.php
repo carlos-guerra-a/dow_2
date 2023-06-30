@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Dependencias de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> --}}
 
 
     <title>@yield('title')</title>
@@ -35,7 +35,48 @@
             color: #fff;
         }
 
-        /* Resto del código CSS existente */
+        .border-shape {
+            background: #ffbe00 none repeat scroll 0 0;
+            color: #fff;
+            display: block;
+            height: 3px;
+            left: 0;
+            margin: 20px auto;
+            position: relative;
+            right: 0;
+            text-align: center;
+            top: 0;
+            width: 80px;
+            }
+
+        .border-shape::before {
+            background: #ffbe00 none repeat scroll 0 0;
+            bottom: 0;
+            content: "";
+            height: 1px;
+            left: 80px;
+            margin: 0 auto;
+            position: absolute;
+            text-align: center;
+            top: 1px;
+            width: 100px;
+        }
+
+        .border-shape::after {
+            background: #ffbe00 none repeat scroll 0 0;
+            bottom: 0;
+            content: "";
+            height: 1px;
+            margin: 0 auto;
+            position: absolute;
+            right: 80px;
+            text-align: center;
+            top: 1px;
+            width: 100px;
+        }
+
+        
+
 
         .container {
             flex: 1;

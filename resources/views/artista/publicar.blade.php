@@ -5,6 +5,16 @@
     <div class="container">
         <h1>Cargar y publicar imagen</h1>
 
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <p>Atención: </p>
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <form enctype="multipart/form-data" method="POST" action="{{ route('artista.subir', ['user' => $user]) }}">
             @csrf
             <div class="mb-3">

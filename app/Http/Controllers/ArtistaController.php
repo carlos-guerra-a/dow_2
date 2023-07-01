@@ -5,6 +5,8 @@ use App\Models\Cuenta;
 use App\Models\Perfil;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\PublicarRequest; 
+
 
 
 
@@ -46,7 +48,7 @@ class ArtistaController extends Controller
         return view('artista.imagencargada',compact('user'));
     }
 
-    public function subir(Request $request, $user)
+    public function subir(PublicarRequest $request, $user)
     {
         $imagen = $request->file('archivo');
         $titulo = $request->input('titulo');

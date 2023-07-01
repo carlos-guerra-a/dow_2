@@ -105,7 +105,7 @@ figure:hover {
     </ul>
 </div> --}}
 
-{{-- Combobox de Artistas --}}
+{{--combo --}}
 <div class="form-group">
     <label for="artista-select" style="color: black; font-weight: bold;" ><h4>Seleccionar Artista:</h4></label>
     <select class="form-control" id="artista-select">
@@ -118,7 +118,7 @@ figure:hover {
     </select>
 </div>
 
-{{-- Galería de Fotos --}}
+{{-- galeria --}}
 <div class="artist-cards">
     @foreach ($imagenes as $imagen)
         @if ($imagen->baneada === 0)
@@ -155,9 +155,8 @@ figure:hover {
     </div>
 @endforeach
 
-{{-- JavaScript --}}
+{{-- javaScript --}}
 <script>
-    // Filtrar fotos al seleccionar un artista en el combobox
     document.getElementById('artista-select').addEventListener('change', function() {
         var selectedArtista = this.value;
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Perfil;
 use App\Models\Cuenta;
 use App\Models\Imagen;
+use App\Http\Requests\EditRequest; 
+
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -31,7 +33,7 @@ class AdminController extends Controller
         return redirect()->route('admin.home');
     }
 
-    public function actualizar(Request $request, $user)
+    public function actualizar(EditRequest $request, $user)
     {
         $cuenta = Cuenta::where('user', $user)->firstOrFail();
         $cuenta->nombre = $request->input('nombre');

@@ -19,9 +19,12 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any authentication / authorization services.
      */
+
+
+     
     public function boot(): void
     {
-        Gate::define('listar-artistas',function($usuario){
+        Gate::define('listar-artistas',function($user){
             return $cuenta->user->perfil_id == '1';
         });
     }

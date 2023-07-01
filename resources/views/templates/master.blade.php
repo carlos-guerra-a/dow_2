@@ -213,7 +213,10 @@
             <section>
                 <span><i class="fa fa-paint-brush"></i></span>
                 <span>PhotoArt</span>
+              
+
                 <a href="{{ route('index')}}">Inicio</a>
+                
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-instagram"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>

@@ -18,14 +18,14 @@
                             <th>Tipo</th>
                             
                             @if (Auth::user()->perfil_id === 1)
-                                <th>Editar Borrar</th>
+                                <th>Acciones</th>
                             @endif
 
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($cuentas as $cuenta)
-                            {{-- @if ($cuenta->perfil_id !== 1 && $cuenta->user !== Auth::user()->user) --}}
+                            @if ($cuenta->perfil_id !== 1 && $cuenta->user !== Auth::user()->user)
                                 <tr>
                                     <td>
                                         @if ($cuenta->perfil_id === 1 && $cuenta->user === Auth::user()->user)
@@ -87,13 +87,13 @@
                                         </td>
                                     @endif    
                                 </tr>
-                            {{-- @endif     --}}
+                            @endif    
                         @endforeach
                     </tbody>
                 </table>
 
                 @if (Auth::user()->perfil_id === 1)
-                    <a href="{{ route('crear.cuenta') }}" class="btn btn-primary">Agregar Nuevo Artista</a>
+                    <a href="{{ route('crear.cuenta') }}" class="btn btn-primary">Agregar cuenta</a>
                 @endif
             </div>
             @if (Auth::user()->perfil_id === 1)

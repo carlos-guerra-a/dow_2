@@ -1,6 +1,6 @@
 @extends('templates.master')
 
-@section('title', 'Iniciar Sesión')
+@section('title', 'PhotoArt - Iniciar Sesión')
 
 @section('contenido')
     <div class="row justify-content-center ">

@@ -24,7 +24,7 @@ class CuentaRequest extends FormRequest
     {
         return [
             'user' => 'required|min:1|max:20',
-            'password' => 'required|min:5|max:100',
+            'password' => 'required|min:6|max:100',
             'nombre' => 'required|min:1|max:20',
             'apellido' => 'required|min:1|max:20',
         ];
@@ -39,7 +39,7 @@ class CuentaRequest extends FormRequest
             'user.min' => 'El campo usuario debe tener al menos 1 carácter.',
             'user.max' => 'El campo usuario no puede tener más de 20 caracteres.',
             'password.required' => 'El campo contraseña es requerido.',
-            'password.min' => 'El campo contraseña debe tener al menos 5 caracteres.',
+            'password.min' => 'El campo contraseña debe tener al menos 6 caracteres.',
             'password.max' => 'El campo contraseña no puede tener más de 100 caracteres.',
             'nombre.required' => 'El campo nombre es requerido.',
             'nombre.min' => 'El campo nombre debe tener al menos 1 carácter.',

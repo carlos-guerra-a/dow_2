@@ -1,6 +1,6 @@
 @extends('templates.master')
 
-@section('title', 'Fotos Baneadas - Artista')
+@section('title', 'PhotoArt - Fotos Baneadas')
 
 @section('contenido')
 <div class="row justify-content-center">

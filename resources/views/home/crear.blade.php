@@ -1,5 +1,5 @@
 @extends('templates.master')
-
+@section('title', 'PhotoArt - Crear Cuenta')
 @section('contenido')
     <div class="container">
         <h1>Crear cuenta de Artista</h1>

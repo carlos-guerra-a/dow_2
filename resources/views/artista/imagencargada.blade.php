@@ -1,4 +1,5 @@
 @extends('templates.master')
+@section('title', 'PhotoArt - Imagen Cargada')
 
 @section('contenido')
     <div class="container">

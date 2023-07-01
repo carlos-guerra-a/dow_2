@@ -1,4 +1,5 @@
 @extends('templates.master')
+@section('title', 'PhotoArt')
 
 @section('contenido')
 

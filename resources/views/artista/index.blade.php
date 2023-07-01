@@ -116,10 +116,10 @@
                                                     
                                                     {{-- este va --}}
                                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="motivo" placeholder="Motivo de ban" aria-label="Motivo de ban">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                                        
+                                                            Eliminar {{-- input type="text" class="form-control" name="motivo" placeholder="Motivo de ban" aria-label="Motivo de ban"> --}}
+                                                        
+                                                        {{-- <button type="submit" class="btn btn-primary">Enviar</button> --}}
                                                     </button>    
                                                         
                                                                                                        

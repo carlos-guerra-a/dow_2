@@ -13,6 +13,9 @@
     <title>@yield('title')</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=MuseoModerno&family=Rampart+One&family=Reenie+Beanie&family=Roboto:wght@100&display=swap');
+
+
         *, *:after, *:before {
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
@@ -23,16 +26,17 @@
             margin: 0;
             overflow-x: hidden !important;
             box-sizing: border-box;
-            font-family: 'Source Sans Pro', sans-serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            font-family: 'MuseoModerno', cursive;
+            font-weight: bold;
         }
 
         a {
             text-decoration: none;
             outline: none !important;
-            color: #fff;
+            /*color: #fff;*/
         }
 
         .border-shape {

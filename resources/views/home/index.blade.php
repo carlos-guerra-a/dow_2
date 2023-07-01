@@ -4,7 +4,9 @@
 
 {{-- CSS --}}
 <style>
-@import url(https://fonts.googleapis.com/css?family=Reenie+Beanie);
+
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno&family=Rampart+One&family=Reenie+Beanie&family=Roboto:wght@100&display=swap');
+
 
 body {
  background:url('https://i.imgur.com/ue8n1S3.png');

@@ -5,6 +5,7 @@ use App\Models\Perfil;
 use App\Models\Cuenta;
 use App\Models\Imagen;
 use App\Http\Requests\EditRequest; 
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 
@@ -26,8 +27,17 @@ class AdminController extends Controller
 
     
     public function borrarCuenta($user)
-    {
+    {   
         $cuenta = Cuenta::findOrFail($user);
+        $imagenes = Imagen::where('cuenta_user',$cuenta->user)->get();
+        
+        foreach ($imagenes as $imagen){
+
+            $imagen->delete();
+            Storage::disk('public')->delete($imagen->archivo);
+        }
+        
+        
         $cuenta->delete();
 
         return redirect()->route('admin.home');

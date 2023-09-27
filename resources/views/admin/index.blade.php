@@ -30,12 +30,14 @@
                                     <td>
                                         @if ($cuenta->perfil_id === 1 && $cuenta->user === Auth::user()->user)
                                             <span class="text-dark">{{ $cuenta->nombre }} {{ $cuenta->apellido }}</span>
-                                        @else
+                                        @elseif ($cuenta->perfil_id === 2)
                                             <a href="{{ route('artista.home', ['user' => $cuenta->user]) }}">{{ $cuenta->nombre }} {{ $cuenta->apellido }}</a>
                                         @endif
                                     </td>
                                     <td>
-                                        {{ $perf[$cuenta->perfil_id] }}
+                                        @if ($cuenta->perfil_id === 2)
+                                            {{ $perf[$cuenta->perfil_id] }}
+                                        @endif
                                     </td>
                                     @if (Auth::user()->perfil_id === 1)
                                         <td>

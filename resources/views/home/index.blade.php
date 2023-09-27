@@ -117,24 +117,30 @@ figure:hover {
         @endforeach
     </select>
 </div>
-
+ 
 {{-- galeria --}}
 <div class="artist-cards">
     @foreach ($imagenes as $imagen)
-        @if ($imagen->baneada === 0)
-            <figure style="max-width: 250px;" class="artist-card" data-artista="{{ $imagen->cuenta->user }}">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#imagenModal{{ $imagen->id }}">
-                    <img src="{{ asset('storage/'.$imagen->archivo) }}" alt="Imagen" style="max-width: 100%; height: auto;">
-                </a>
-                <figcaption>{{ $imagen->titulo}}</figcaption>
-                <p>
+        
+         {{-- {{$jugador->equipo!=null?$jugador->equipo->nombre:'Sin Equipo'}} --}}
+         {{-- @if($jugador->equipo!=null) --}}
+        
+        {{-- @if ($imagen->cuenta_user===null) --}}
+            @if ($imagen->baneada === 0)
+                <figure style="max-width: 250px;" class="artist-card" data-artista="{{ $imagen->cuenta->user }}">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imagenModal{{ $imagen->id }}">
+                        <img src="{{ asset('storage/'.$imagen->archivo) }}" alt="Imagen" style="max-width: 100%; height: auto;">
+                    </a>
+                    <figcaption>{{ $imagen->titulo}}</figcaption>
+                    <p>
+                        
 
-
-                    
-                </p>
-                <figcaption class="blockquote-footer">{{ $imagen->cuenta->nombre }} {{ $imagen->cuenta->apellido }}</figcaption>
-            </figure>
-        @endif
+                        
+                    </p>
+                    <figcaption class="blockquote-footer">{{ $imagen->cuenta->nombre }} {{ $imagen->cuenta->apellido }}</figcaption>
+                </figure>
+            @endif
+        {{-- @endif --}}
     @endforeach
 </div>
 

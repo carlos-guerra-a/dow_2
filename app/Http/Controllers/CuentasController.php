@@ -13,7 +13,7 @@ class CuentasController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth')->except(['autenticar','logout']);
+        $this->middleware('auth')->except(['autenticar','logout','crearCuenta']);
     }
 
     public function autenticar(Request $request)
